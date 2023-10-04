@@ -1,10 +1,12 @@
 package dsa.graph;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
+@Setter
+@Getter
 public class Node {
 
     private String name;
@@ -13,4 +15,6 @@ public class Node {
     public Node(String name) {
         this.name = name;
     }
+
+
 }
