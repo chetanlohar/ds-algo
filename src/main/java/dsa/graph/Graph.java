@@ -111,4 +111,53 @@ public class Graph {
         System.out.println(bfsOrder);
 
     }
+
+    //has Path exists problem
+    public boolean hasPathExistsDFS(Map<String, List<String>> adjList, String src, String dest) {
+        if(src.equals(dest)) {
+            return true;
+        }
+        Stack<String> stack = new Stack<>();
+        stack.push(src);
+
+        while(!stack.isEmpty()){
+            String currentNode = stack.pop();
+            if(currentNode.equals(dest)) return true;
+
+            for(String neighbor:adjList.get(currentNode)){
+                stack.push(neighbor);
+            }
+        }
+        return false;
+    }
+
+    public boolean hasPathExistsRecursiveDFS(Map<String, List<String>> adjList, String src, String dest) {
+        if(Objects.equals(src, dest)) return true;
+
+        for(String neighbor: adjList.get(src)) {
+            if(hasPathExistsRecursiveDFS(adjList,neighbor,dest)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean hasPathExistsBFS(Map<String, List<String>> adjList, String src, String dest) {
+        if(src.equals(dest)) return true;
+        Set<String> visited = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+        queue.add(src);
+        while(!queue.isEmpty()){
+            String currentNode = queue.poll();
+            if(currentNode.equals(dest)){
+                return true;
+            }
+            if(!visited.contains(currentNode)){
+                visited.add(currentNode);
+                queue.addAll(adjList.get(currentNode));
+            }
+        }
+        return false;
+    }
 }
