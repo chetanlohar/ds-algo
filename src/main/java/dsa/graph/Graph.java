@@ -160,4 +160,109 @@ public class Graph {
         }
         return false;
     }
+
+    public static boolean undirectedPath(List<List<String>> edges, String src, String dest) {
+        // convert edges to adjList
+        Map<String,List<String>> adjList = new HashMap<>();
+        for(List<String> l: edges){
+            if(!adjList.containsKey(l.get(0))){
+                List<String> neighbors = new ArrayList<>();
+                neighbors.add(l.get(1));
+                adjList.put(l.get(0),neighbors);
+            } else {
+                adjList.get(l.get(0)).add(l.get(1));
+            }
+            if(!adjList.containsKey(l.get(1))){
+                List<String> neighbors = new ArrayList<>();
+                neighbors.add(l.get(0));
+                adjList.put(l.get(1),neighbors);
+            } else {
+                adjList.get(l.get(1)).add(l.get(0));
+            }
+        }
+
+        Set<String> visitedNodes = new HashSet<>();
+
+//        Stack<String> stack = new Stack<>();
+//        stack.push(src);
+//
+//        while(!stack.isEmpty()) {
+//            String currentNode = stack.pop();
+//            if(currentNode.equals(dest)) return true;
+//            if(!visitedNodes.contains(currentNode)){
+//                visitedNodes.add(currentNode);
+//                for(String neighbor: adjList.get(currentNode)) {
+//                    stack.push(neighbor);
+//                }
+//            }
+//        }
+//        return false;
+
+        return hasPathRecursive(adjList,src,dest,visitedNodes);
+    }
+
+    public static boolean hasPathRecursive(Map<String,List<String>> adjList, String src, String dest, Set<String> visited){
+        if(src.equals(dest)) return true;
+        if(!visited.contains(src)){
+            visited.add(src);
+            for(String neighbor: adjList.get(src)){
+                if(hasPathRecursive(adjList,neighbor,dest,visited)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static int connectedComponentsCount(Map<Integer, List<Integer>> graph) {
+        int count = 0;
+        Set<Integer> visited = new HashSet<>();
+        Set<Map.Entry<Integer, List<Integer>>> entries = graph.entrySet();
+        for (Map.Entry<Integer, List<Integer>> entry : entries) {
+            if(!visited.contains(entry.getKey())){
+                count++;
+                dfsConnectedComponents(graph,entry.getKey(),visited);
+            }
+        }
+
+        return count;
+    }
+
+    public static void dfsConnectedComponents(Map<Integer, List<Integer>> graph,Integer node, Set<Integer> visited){
+        if(!visited.contains(node)){
+            visited.add(node);
+            for(Integer neighbor:graph.get(node)){
+                dfsConnectedComponents(graph,neighbor,visited);
+            }
+        }
+    }
+
+    public static int largestComponentCount(Map<Integer, List<Integer>> graph) {
+        int maxSize = 0;
+        Set<Integer> visited = new HashSet<>();
+        Set<Map.Entry<Integer, List<Integer>>> entries = graph.entrySet();
+        for (Map.Entry<Integer, List<Integer>> entry : entries) {
+            if(!visited.contains(entry.getKey())){
+                int componentSize = explore(graph,entry.getKey(),visited);
+                if(componentSize > maxSize){
+                    maxSize = componentSize;
+                }
+            }
+        }
+        return maxSize;
+    }
+
+    public static int explore(Map<Integer, List<Integer>> graph,Integer node, Set<Integer> visited){
+        int count = 0;
+        if(!visited.contains(node)){
+            count++;
+            visited.add(node);
+            for(Integer neighbor:graph.get(node)){
+                count = count + explore(graph,neighbor,visited);
+            }
+        }
+        return count;
+    }
+
+
 }
