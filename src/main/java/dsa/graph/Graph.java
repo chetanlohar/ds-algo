@@ -112,7 +112,7 @@ public class Graph {
 
     }
 
-    //has Path exists problem
+    // Problem statement: https://structy.net/problems/has-path
     public boolean hasPathExistsDFS(Map<String, List<String>> adjList, String src, String dest) {
         if(src.equals(dest)) {
             return true;
@@ -161,6 +161,7 @@ public class Graph {
         return false;
     }
 
+    // Problem statement: https://structy.net/problems/undirected-path
     public static boolean undirectedPath(List<List<String>> edges, String src, String dest) {
         // convert edges to adjList
         Map<String,List<String>> adjList = new HashMap<>();
@@ -214,6 +215,7 @@ public class Graph {
         return false;
     }
 
+    // Problem statement: https://structy.net/problems/connected-components-count
     public static int connectedComponentsCount(Map<Integer, List<Integer>> graph) {
         int count = 0;
         Set<Integer> visited = new HashSet<>();
@@ -237,6 +239,7 @@ public class Graph {
         }
     }
 
+    // Problem statement: https://structy.net/problems/largest-component
     public static int largestComponentCount(Map<Integer, List<Integer>> graph) {
         int maxSize = 0;
         Set<Integer> visited = new HashSet<>();
