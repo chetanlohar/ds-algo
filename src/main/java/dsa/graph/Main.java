@@ -3,7 +3,8 @@ package dsa.graph;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Checking-in projects initial structure");
+        Graph graph = new Graph().getDummyGraph();
+        graph.dfs();
     }
 
 }
