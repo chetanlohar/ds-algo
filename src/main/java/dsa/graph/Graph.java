@@ -267,5 +267,112 @@ public class Graph {
         return count;
     }
 
+    // Problem Statement: https://structy.net/problems/shortest-path
+    public static int shortestPath(List<List<String>> edges, String nodeA, String nodeB) {
+        Map<String,List<String>> adjList = new HashMap<>();
+        for(List<String> l: edges){
+            if(!adjList.containsKey(l.get(0))){
+                List<String> neighbors = new ArrayList<>();
+                neighbors.add(l.get(1));
+                adjList.put(l.get(0),neighbors);
+            } else {
+                adjList.get(l.get(0)).add(l.get(1));
+            }
+            if(!adjList.containsKey(l.get(1))){
+                List<String> neighbors = new ArrayList<>();
+                neighbors.add(l.get(0));
+                adjList.put(l.get(1),neighbors);
+            } else {
+                adjList.get(l.get(1)).add(l.get(0));
+            }
+        }
 
+        Queue<Map.Entry<String,Integer>> queue = new LinkedList<>();
+        queue.add(new AbstractMap.SimpleEntry<>(nodeA, 0));
+        Set<String> visited = new HashSet<>();
+        while (!queue.isEmpty()) {
+            Map.Entry<String,Integer> currentNode = queue.poll();
+            if(currentNode.getKey().equals(nodeB)) return currentNode.getValue();
+            if(!visited.contains(currentNode.getKey())){
+                visited.add(currentNode.getKey());
+                for(String neighbor: adjList.get(currentNode.getKey())){
+                    queue.add(new AbstractMap.SimpleEntry<>(neighbor,currentNode.getValue()+1));
+                }
+            }
+        }
+        return -1;
+    }
+
+
+    // Problem statement: https://structy.net/problems/island-count
+    public static int countIslands(List<List<String>> grid){
+        int count = 0;
+        Set<String> visited = new HashSet<>();
+
+        for(int r=0; r<grid.size(); r++) {
+            for(int c=0; c<grid.get(0).size(); c++) {
+                if(explore(grid,r,c,visited)) count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean explore(List<List<String>> grid, int r, int c, Set<String> visited){
+        boolean rowInbounds = r >= 0 && r < grid.size();
+        boolean columnInbounds = c >= 0 && c < grid.get(0).size();
+        if(!rowInbounds || !columnInbounds) return false;
+        if(grid.get(r).get(c).equals("W")) return false;
+
+        String pos = r+","+c;
+        if(visited.contains(pos)) return false;
+        visited.add(pos);
+
+        explore(grid,r-1,c,visited); // up
+        explore(grid,r+1,c,visited); // down
+        explore(grid,r,c-1,visited); // left
+        explore(grid,r,c+1,visited); // right
+        return true;
+    }
+
+    // Problem statement: Minimum island size
+    public static int getMinimumIslandSize(List<List<String>> grid){
+        int minIslandsSize = -1;
+
+        Set<String> visited = new HashSet<>();
+
+        for(int r = 0; r<grid.size(); r++) {
+            for(int c=0; c < grid.get(0).size(); c++) {
+                int count = exploreMinIsland(grid,r,c,visited);
+                if(minIslandsSize == -1 && count != 0){
+                    minIslandsSize = count;
+                }
+                else if(count != 0){
+                    minIslandsSize = Math.min(minIslandsSize,count);
+                }
+            }
+        }
+
+        if(minIslandsSize == -1) {
+            return 0;
+        }
+
+        return minIslandsSize;
+    }
+
+    private static int exploreMinIsland(List<List<String>> grid, int r, int c, Set<String> visited) {
+        boolean rowInbounds = r >= 0 && r < grid.size();
+        boolean columnInbounds = c >= 0 && c < grid.get(0).size();
+        if(!rowInbounds || !columnInbounds) return 0;
+        if (grid.get(r).get(c).equals("W")) return 0;
+
+        String pos = r+","+c;
+        if(visited.contains(pos)) return 0;
+        visited.add(pos);
+        int countNodes = 1;
+        countNodes += exploreMinIsland(grid,r-1,c,visited);
+        countNodes += exploreMinIsland(grid,r+1,c,visited);
+        countNodes += exploreMinIsland(grid,r,c-1,visited);
+        countNodes += exploreMinIsland(grid,r,c+1,visited);
+        return countNodes;
+    }
 }

@@ -10,6 +10,7 @@ https://www.youtube.com/watch?v=tWVWeAqZ0WU
 3. https://structy.net/problems/connected-components-count
 4. https://structy.net/problems/largest-component
 5. https://structy.net/problems/shortest-path
+6. https://structy.net/problems/island-count
+7. Minimun Island size
 
-Thank you @alvin-the-programmer for this useful video.
-https://github.com/alvin-the-programmer
+Thank you [@alvin-the-programmer] https://github.com/alvin-the-programmer

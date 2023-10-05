@@ -98,5 +98,88 @@ public class Main {
         System.out.println("largest components size: "+Graph.largestComponentCount(graph5));
         System.out.println("largest components size: "+Graph.largestComponentCount(graph6));
         System.out.println("largest components size: "+Graph.largestComponentCount(graph7));
+
+
+        System.out.println("****** Shortest path (min no of edges between 2 nodes) (Undirected Graph) ****");
+
+        List<List<String>> edges1 = List.of(
+                List.of("w", "x"),
+                List.of("x", "y"),
+                List.of("z", "y"),
+                List.of("z", "v"),
+                List.of("w", "v")
+        );
+
+        List<List<String>> edges2 = List.of(
+                List.of("a", "c"),
+                List.of("a", "b"),
+                List.of("c", "b"),
+                List.of("c", "d"),
+                List.of("b", "d"),
+                List.of("e", "d"),
+                List.of("g", "f")
+        );
+
+        List<List<String>> edges3 = List.of(
+                List.of("m", "n"),
+                List.of("n", "o"),
+                List.of("o", "p"),
+                List.of("p", "q"),
+                List.of("t", "o"),
+                List.of("r", "q"),
+                List.of("r", "s")
+        );
+
+        System.out.println("shortest path: "+Graph.shortestPath(edges1,"w","z")); // expected -> 2
+        System.out.println("shortest path: "+Graph.shortestPath(edges1,"y","x")); // expected -> 1
+        System.out.println("shortest path: "+Graph.shortestPath(edges2,"e","c")); // expected -> 2
+        System.out.println("shortest path: "+Graph.shortestPath(edges2,"b","g")); // expected -> -1
+        System.out.println("shortest path: "+Graph.shortestPath(edges3,"m","s")); // expected -> 6
+
+        System.out.println("\n****** Total Island Count (Graph Grid) ****");
+
+        List<List<String>> grid1 = List.of(
+                List.of("W", "L", "W", "W", "W"),
+                List.of("W", "L", "W", "W", "W"),
+                List.of("W", "W", "W", "L", "W"),
+                List.of("W", "W", "L", "L", "W"),
+                List.of("L", "W", "W", "L", "L"),
+                List.of("L", "L", "W", "W", "W")
+        );
+
+        List<List<String>> grid2 = List.of(
+                List.of("L", "W", "W", "L", "W"),
+                List.of("L", "W", "W", "L", "L"),
+                List.of("W", "L", "W", "L", "W"),
+                List.of("W", "W", "W", "W", "W"),
+                List.of("W", "W", "L", "L", "L")
+        );
+
+        List<List<String>> grid3 = List.of(
+                List.of("L", "L", "L"),
+                List.of("L", "L", "L"),
+                List.of("L", "L", "L")
+        );
+
+        List<List<String>> grid4 = List.of(
+                List.of("W", "W"),
+                List.of("W", "W"),
+                List.of("W", "W")
+        );
+
+        System.out.println("Island 1 counts: "+Graph.countIslands(grid1)); // expected -> 3
+        System.out.println("Island 2 counts: "+Graph.countIslands(grid2)); // expected -> 4
+        System.out.println("Island 3 counts: "+Graph.countIslands(grid3)); // expected -> 1
+        System.out.println("Island 4 counts: "+Graph.countIslands(grid4)); // expected -> 0
+
+
+        // Minimum Island size
+        System.out.println("\n****** Minimum Island Size (Graph Grid) ****");
+
+        System.out.println("Minimum island size: "+Graph.getMinimumIslandSize(grid1)); // // expected -> 2
+        System.out.println("Minimum island size: "+Graph.getMinimumIslandSize(grid2)); // // expected -> 1
+        System.out.println("Minimum island size: "+Graph.getMinimumIslandSize(grid3)); // // expected -> 9
+        System.out.println("Minimum island size: "+Graph.getMinimumIslandSize(grid4)); // // expected -> 0
+
     }
 }
