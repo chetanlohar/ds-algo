@@ -13,17 +13,11 @@ https://www.youtube.com/watch?v=tWVWeAqZ0WU
 6. https://structy.net/problems/island-count
 7. Minimun Island size
 
-Thank you [@alvin-the-programmer] https://github.com/alvin-the-programmer
-
-Learn Disjoint Set, Union by Rank, Union by Size and Path Compression
-https://www.youtube.com/watch?v=aBxjDBC4M1U&ab_channel=takeUforward
-
-Learn Kruskal's Algorithm
-Prerequisite: DisjointSet Data structure
-https://www.youtube.com/watch?v=DMnDM_sxVig&t=39s&ab_channel=takeUforward
-
+Thank you <a href="https://github.com/alvin-the-programmer">@alvin-the-programmer</a>
 
 Graph Learning resources:
-1. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWwIf"> Complete Playlist </a>
+1. <a href="https://www.youtube.com/watch?v=aBxjDBC4M1U&ab_channel=takeUforward">Disjoint Set, Union by Rank, Union by Size and Path Compression</a>
+2. <a href="https://www.youtube.com/watch?v=DMnDM_sxVig&t=39s&ab_channel=takeUforward">Kruskal's Algorithm</a>
+1. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWwIf"> Complete Graph Playlist </a>
 2. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn">If you have limited time</a>
 3. <a href="https://leetcode.com/discuss/study-guide/2360573/Become-Master-In-Graph">LeetCode - Become Master in Graph</a>
