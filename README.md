@@ -14,3 +14,16 @@ https://www.youtube.com/watch?v=tWVWeAqZ0WU
 7. Minimun Island size
 
 Thank you [@alvin-the-programmer] https://github.com/alvin-the-programmer
+
+Learn Disjoint Set, Union by Rank, Union by Size and Path Compression
+https://www.youtube.com/watch?v=aBxjDBC4M1U&ab_channel=takeUforward
+
+Learn Kruskal's Algorithm
+Prerequisite: DisjointSet Data structure
+https://www.youtube.com/watch?v=DMnDM_sxVig&t=39s&ab_channel=takeUforward
+
+
+Graph Learning resources:
+1. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWwIf"> Complete Playlist </a>
+2. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn">If you have limited time</a>
+3. <a href="https://leetcode.com/discuss/study-guide/2360573/Become-Master-In-Graph">LeetCode - Become Master in Graph</a>
