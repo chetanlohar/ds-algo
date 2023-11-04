@@ -12,6 +12,40 @@ import java.util.*;
 public class Graph {
     private List<Node> nodes;
 
+    // Function to detect cycle in a provided graph (graph as a adjList)
+    public static Boolean detectCycle(List<List<Integer>> graph) {
+        int [] visited = new int[graph.size()+1];
+        int [] pathVisited = new int[graph.size()+1];
+        Arrays.fill(visited,0);
+        Arrays.fill(pathVisited,0);
+        for(int i=1;i<graph.size();i++){
+            if(visited[i] == 0) {
+                if(dfs(graph, i,visited,pathVisited)) return true;
+            }
+        }
+        return false;
+    }
+
+    // Function to traverse graph in dfs manner
+    private static boolean dfs(List<List<Integer>> graph, int source, int[] visited, int[] pathVisited) {
+        visited[source] = 1;
+        pathVisited[source] = 1;
+        // traverse neighbor nodes of the provided source node
+        for(int neighbor: graph.get(source)){
+            // if neighbor node is not yet visited then explore traverse it
+            if(visited[neighbor] == 0) {
+                if(dfs(graph,neighbor,visited,pathVisited)) return true;
+            }
+            // else check whether is on a same path
+            else if(pathVisited[neighbor] == 1) {
+                return true;
+            }
+        }
+        pathVisited[source] = 0;
+        return false;
+    }
+
+
     //  Get the dummy graph to learn graph traversals
     public Graph getSimpleDummyGraph1(){
         // Create all nodes/vertices
@@ -374,5 +408,62 @@ public class Graph {
         countNodes += exploreMinIsland(grid,r,c-1,visited);
         countNodes += exploreMinIsland(grid,r,c+1,visited);
         return countNodes;
+    }
+
+    public static class Pair {
+        int i,j,t;
+
+        public Pair(int i, int j, int t) {
+            this.i = i;
+            this.j = j;
+            this.t = t;
+        }
+    }
+
+    public static int rottenOranges(int [][] grid){
+        Set<String> visitedCells = new HashSet<>();
+        // add the rotten oranges to the queue;
+        Queue<Pair> q = new LinkedList<>();
+        for(int i = 0;i<grid.length; i++) {
+            for(int j = 0; j<grid[i].length; j++){
+                if(grid[i][j] == 2) {
+                    q.add(new Pair(i,j,0));
+                }
+            }
+        }
+
+        int maxTime = 0;
+        int[] drow = {-1,0,1,0};
+        int[] dcol = {0,1,0,-1};
+        while(!q.isEmpty()) {
+            Pair p = q.poll();
+            maxTime = Math.max(maxTime, p.t);
+            String pos = p.i+","+p.j;
+            if (!visitedCells.contains(pos)){
+                visitedCells.add(pos);
+                for(int i = 0; i<4; i++) {
+                    int nrow = p.i + drow[i];
+                    int ncol = p.j + dcol[i];
+                    boolean rowBoundary = nrow >= 0 && nrow < grid.length;
+                    boolean colBoundary = ncol >= 0 && ncol < grid[0].length;
+                    if(rowBoundary && colBoundary && grid[nrow][ncol] == 1) {
+                        q.add(new Pair(nrow,ncol,p.t+1));
+                        grid[nrow][ncol] = 2;
+                    }
+                }
+
+            }
+        }
+
+        for (int i = 0; i<grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == 1) {
+                    return -1;
+                }
+            }
+
+        }
+
+        return maxTime;
     }
 }

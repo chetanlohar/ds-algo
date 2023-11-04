@@ -181,5 +181,32 @@ public class Main {
         System.out.println("Minimum island size: "+Graph.getMinimumIslandSize(grid3)); // // expected -> 9
         System.out.println("Minimum island size: "+Graph.getMinimumIslandSize(grid4)); // // expected -> 0
 
+        // Rotten Oranges: https://leetcode.com/problems/rotting-oranges/description/
+
+        int [][] grid = {{2,1,1},{1,1,0},{0,1,1}};
+        System.out.println("All Oranges Rotten time: "+Graph.rottenOranges(grid));
+
+        List<List<Integer>> graph8 = List.of(
+                List.of(),
+                List.of(2),
+                List.of(3),
+                List.of(4,7),
+                List.of(5),
+                List.of(6),
+                List.of(),
+                List.of(5),
+                List.of(9),
+                List.of(10),
+                List.of(8)
+        );
+
+        // G-19 Detect cycle in a directed graph using DFS
+        // Link: https://www.youtube.com/watch?v=9twcmtQj4DU&list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWw&index=12&ab_channel=takeUforward
+        Boolean isCyclePresent = Graph.detectCycle(graph8);
+
+        System.out.println("isCyclePresent: "+ isCyclePresent);
+
+
+
     }
 }

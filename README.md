@@ -21,3 +21,6 @@ Graph Learning resources:
 1. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0rGEWe64KWas0Nryn7SCRWwIf"> Complete Graph Playlist </a>
 2. <a href="https://www.youtube.com/playlist?list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn">If you have limited time</a>
 3. <a href="https://leetcode.com/discuss/study-guide/2360573/Become-Master-In-Graph">LeetCode - Become Master in Graph</a>
+
+Few More Graph Problems from LeedCode
+1. <a href="https://leetcode.com/problems/rotting-oranges/description/">Rotten Oranges </a>
